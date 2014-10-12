@@ -22,15 +22,20 @@ def count_unique(string1):
     for letter in sorted(letter_count.keys()):
         print "\"%s\" character appears %d times" % (letter, letter_count[letter])
 
-
-
-
 """
 Given two lists, (without using the keywords 'if __ in ____' or the method 'index')
 return a list of all common items shared between both lists
 """
 def common_items(list1, list2):
-    pass
+    d = {}
+    common_list = []
+    for item in list1:
+        d[item] = 1
+    for item in list2:
+        if d.get(item, 0) == 1:
+            common_list.append(item)
+    print common_list
+
 
 """
 Given two lists, (without using 'if __ in ____' or 'index')
@@ -89,6 +94,7 @@ print the sentece translated to pirate.
 
 def main():
     count_unique(string1)
+    common_items(list1, list2)
 
 if __name__ == "__main__":
     main()
