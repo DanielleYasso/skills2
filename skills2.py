@@ -36,7 +36,7 @@ def common_items(list1, list2):
             else:
                 common_list.append(item)
 
-    print common_list
+    return common_list
 
 
 """
@@ -52,7 +52,7 @@ def common_items2(list1, list2):
     for item in list2:
         if d.get(item, 0) == 1:
             common_list.append(item)
-    print common_list
+    return common_list
 
 """
 Given a list of numbers, return list of number pairs that sum to zero
@@ -63,14 +63,16 @@ def sum_zero(list1):
         for num2 in list1:
             if num + num2 == 0:
                 zero_sums.append((num, num2))
-    print zero_sums
+    return zero_sums
 
 
 """
 Given a list of words, return a list of words with duplicates removed
 """
 def find_duplicates(words):
-    pass
+    words_set = set(words)
+    words_list = list(words_set)
+    return words_list
 
 """
 Given a list of words, print the words in ascending order of length
@@ -112,13 +114,16 @@ def main():
     count_unique(string1)
 
     print "Common items:"
-    common_items(list1, list2)
+    print common_items(list1, list2)
 
     print "Common items 2 (using dictionary):"
-    common_items2(list1, list2)
+    print common_items2(list1, list2)
 
     print "Sum zero:"
-    sum_zero(list1)
+    print sum_zero(list1)
+
+    print "Remove duplicates:"
+    print find_duplicates(words)
 
 if __name__ == "__main__":
     main()
