@@ -143,6 +143,43 @@ man         matey
 Write a program that asks the user to type in a sentence and then
 print the sentece translated to pirate.
 """
+def pirate():
+    user_input = raw_input("Type a sentence! ")
+    print "Converting to pirate speak..."
+
+    pirate_speak = {"sir": "matey",
+                    "hotel": "fleabag inn",
+                    "student": "swabbie",
+                    "boy": "matey",
+                    "madam": "proud beauty",
+                    "professor": "foul blaggart",
+                    "restaurant": "galley",
+                    "your": "yer",
+                    "excuse": "arr",
+                    "students": "swabbies",
+                    "are": "be",
+                    "lawyer": "foul blaggart",
+                    "the": "th'",
+                    "restroom": "head",
+                    "bathroom": "head",
+                    "my": "me",
+                    "hello": "avast",
+                    "is": "be",
+                    "man": "matey",
+                    "friend": "matey",
+                    "hi": "avast"}
+
+    user_words = user_input.strip().split()
+
+    # convert to pirate!
+    for i, word in enumerate(user_words):
+        word = word.lower()
+        if pirate_speak.get(word, False):
+            user_words[i] = pirate_speak[word]
+
+    pirate_message = " ".join(user_words)
+    print pirate_message
+
 
 def main():
     print "Count unique:"
@@ -162,6 +199,8 @@ def main():
 
     print "Word length:"
     word_length("twain.txt")
+
+    pirate()
 
 if __name__ == "__main__":
     main()
