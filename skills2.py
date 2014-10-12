@@ -28,14 +28,13 @@ return a list of all common items shared between both lists
 """
 def common_items(list1, list2):
     common_list = []
-    for item in list1:
-        for item2 in list2:
-            if item2 == item:
-                common_list.append(item2)
 
-    # remove duplicates
-    temp = set(common_list)
-    common_list = list(temp)
+    for item in list1:
+        if list2.__contains__(item):
+            if common_list.__contains__(item):
+                continue
+            else:
+                common_list.append(item)
 
     print common_list
 
