@@ -32,13 +32,12 @@ def common_items(list1, list2):
         for item2 in list2:
             if item2 == item:
                 common_list.append(item2)
-                
+
     # remove duplicates
     temp = set(common_list)
     common_list = list(temp)
 
     print common_list
-
 
 
 """
@@ -60,7 +59,13 @@ def common_items2(list1, list2):
 Given a list of numbers, return list of number pairs that sum to zero
 """
 def sum_zero(list1):
-    pass
+    zero_sums = []
+    for num in list1:
+        for num2 in list1:
+            if num + num2 == 0:
+                zero_sums.append((num, num2))
+    print zero_sums
+
 
 """
 Given a list of words, return a list of words with duplicates removed
@@ -112,6 +117,9 @@ def main():
 
     print "Common items 2 (using dictionary):"
     common_items2(list1, list2)
+
+    print "Sum zero:"
+    sum_zero(list1)
 
 if __name__ == "__main__":
     main()
