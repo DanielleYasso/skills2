@@ -27,14 +27,18 @@ Given two lists, (without using the keywords 'if __ in ____' or the method 'inde
 return a list of all common items shared between both lists
 """
 def common_items(list1, list2):
-    d = {}
     common_list = []
     for item in list1:
-        d[item] = 1
-    for item in list2:
-        if d.get(item, 0) == 1:
-            common_list.append(item)
+        for item2 in list2:
+            if item2 == item:
+                common_list.append(item2)
+                
+    # remove duplicates
+    temp = set(common_list)
+    common_list = list(temp)
+
     print common_list
+
 
 
 """
@@ -43,7 +47,14 @@ return a list of all common items shared between both lists. This time,
 use a dictionary as part of your solution.
 """
 def common_items2(list1, list2):
-    pass
+    d = {}
+    common_list = []
+    for item in list1:
+        d[item] = 1
+    for item in list2:
+        if d.get(item, 0) == 1:
+            common_list.append(item)
+    print common_list
 
 """
 Given a list of numbers, return list of number pairs that sum to zero
@@ -93,8 +104,14 @@ print the sentece translated to pirate.
 """
 
 def main():
+    print "Count unique:"
     count_unique(string1)
+
+    print "Common items:"
     common_items(list1, list2)
+
+    print "Common items 2 (using dictionary):"
+    common_items2(list1, list2)
 
 if __name__ == "__main__":
     main()
