@@ -17,10 +17,10 @@ def count_unique(string1):
         d[word] = d.get(word, 0) + 1
         for letter in word:
             letter_count[letter] = letter_count.get(letter, 0) + 1
-    for word, count in d.iteritems():
-        print "\"%s\" appears %d times" % (word, count)
-    for letter, count in letter_count.iteritems():
-        print "\"%s\" character appears %d times" % (letter, count)
+    for word in sorted(d.keys()):
+        print "\"%s\" appears %d times" % (word, d[word])
+    for letter in sorted(letter_count.keys()):
+        print "\"%s\" character appears %d times" % (letter, letter_count[letter])
 
 
 
