@@ -9,14 +9,29 @@ all distinct elements as the keys, and the number of each element as
 the value
 Bonus: do the same for a file (i.e. twain.txt)
 """
+def strip_words(word_list, d, letter_count):
+    for word in word_list:
+        word = word.strip(" .!?,;:-_\"'*()[]")
+        if "--" in word:
+            more_words = word.split("--")
+            strip_words(more_words, d, letter_count)
+        else:
+            d[word] = d.get(word, 0) + 1
+            for letter in word:
+                letter_count[letter] = letter_count.get(letter, 0) + 1
+    # remove empty string            
+    if d.get("", 0) == 276:
+        del d[""]
+    return d, letter_count
+
 def count_unique(string1):
     d = {}
     letter_count = {}
-    word_list = string1.split()
-    for word in word_list:
-        d[word] = d.get(word, 0) + 1
-        for letter in word:
-            letter_count[letter] = letter_count.get(letter, 0) + 1
+    f = open(string1)
+    for line in f:
+        word_list = line.strip().split()
+        d, letter_count = strip_words(word_list, d, letter_count)
+        
     for word in sorted(d.keys()):
         print "\"%s\" appears %d times" % (word, d[word])
     for letter in sorted(letter_count.keys()):
@@ -111,7 +126,7 @@ print the sentece translated to pirate.
 
 def main():
     print "Count unique:"
-    count_unique(string1)
+    count_unique("twain.txt")
 
     print "Common items:"
     print common_items(list1, list2)
