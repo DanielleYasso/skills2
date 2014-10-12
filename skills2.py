@@ -9,20 +9,14 @@ all distinct elements as the keys, and the number of each element as
 the value
 Bonus: do the same for a file (i.e. twain.txt)
 """
-def strip_words(word_list, d, letter_count):
-    for word in word_list:
-        word = word.strip(" .!?,;:-_\"'*()[]")
-        if "--" in word:
-            more_words = word.split("--")
-            strip_words(more_words, d, letter_count)
-        else:
-            d[word] = d.get(word, 0) + 1
-            for letter in word:
-                letter_count[letter] = letter_count.get(letter, 0) + 1
-    # remove empty string            
-    if d.get("", 0) == 276:
-        del d[""]
-    return d, letter_count
+def clean_word(word):
+    word = word.strip(" .!?,;:-_\"'*()[]")
+    if "--" in word:
+        more_words = word.split("--")
+        for new_word in more_words:
+            return new_word
+    else:
+        return word
 
 def count_unique(string1):
     d = {}
@@ -30,7 +24,15 @@ def count_unique(string1):
     f = open(string1)
     for line in f:
         word_list = line.strip().split()
-        d, letter_count = strip_words(word_list, d, letter_count)
+        for word in word_list:
+            word = clean_word(word)
+            d[word] = d.get(word, 0) + 1
+            for letter in word:
+                letter_count[letter] = letter_count.get(letter, 0) + 1
+
+    # remove empty string            
+    if d.get("", 0) == 276:
+        del d[""]   
         
     for word in sorted(d.keys()):
         print "\"%s\" appears %d times" % (word, d[word])
@@ -94,11 +96,20 @@ Given a list of words, print the words in ascending order of length
 Bonus: do it on a file instead of the list provided
 Bonus: print the words in alphabetical order in ascending order of length
 """
-def word_length(words):
+def word_length(filename):
     d = {}
-    for word in words:
-        length = len(word)
-        d.setdefault(length, []).append(word)
+    f = open(filename)
+    for line in f:
+        words_list = line.strip().split()
+        for word in words_list:
+            word = clean_word(word).upper()
+            length = len(word)
+            d.setdefault(length, []).append(word)
+
+    # remove zero length 
+    if d.get(0):
+        del d[0]
+
     for length in sorted(d.keys()):
         print "Words with a length of %d:" % length
         word_list_for_length = find_duplicates(d[length])
@@ -150,7 +161,7 @@ def main():
     print find_duplicates(words)
 
     print "Word length:"
-    word_length(words)
+    word_length("twain.txt")
 
 if __name__ == "__main__":
     main()
