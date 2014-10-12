@@ -95,7 +95,16 @@ Bonus: do it on a file instead of the list provided
 Bonus: print the words in alphabetical order in ascending order of length
 """
 def word_length(words):
-    pass
+    d = {}
+    for word in words:
+        length = len(word)
+        d.setdefault(length, []).append(word)
+    for length in sorted(d.keys()):
+        print "Words with a length of %d:" % length
+        word_list_for_length = find_duplicates(d[length])
+        for word in word_list_for_length:
+            print word
+
 
 """
 Here's a table of English to Pirate translations
@@ -139,6 +148,9 @@ def main():
 
     print "Remove duplicates:"
     print find_duplicates(words)
+
+    print "Word length:"
+    word_length(words)
 
 if __name__ == "__main__":
     main()
