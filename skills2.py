@@ -188,25 +188,25 @@ def pirate():
 
 
 def main():
-    # print "Count unique:"
-    # count_unique("twain.txt")
+    print "Count unique:"
+    count_unique("twain.txt")
 
-    # print "Common items:"
-    # print common_items(list1, list2)
+    print "Common items:"
+    print common_items(list1, list2)
 
-    # print "Common items 2 (using dictionary):"
-    # print common_items2(list1, list2)
+    print "Common items 2 (using dictionary):"
+    print common_items2(list1, list2)
 
-    # print "Sum zero:"
-    # print sum_zero(list1)
+    print "Sum zero:"
+    print sum_zero(list1)
 
     print "Remove duplicates:"
     print find_duplicates(words)
 
-    # print "Word length:"
-    # word_length("twain.txt")
+    print "Word length:"
+    word_length("twain.txt")
 
-    # pirate()
+    pirate()
 
 if __name__ == "__main__":
     main()
