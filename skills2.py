@@ -73,18 +73,22 @@ def common_items2(list1, list2):
 
 """
 Given a list of numbers, return list of number pairs that sum to zero
+Try as a dictionary
 """
 def sum_zero(list1):
     zero_sums = []
+    d = {}
     for num in list1:
-        for num2 in list1:
-            if num + num2 == 0:
-                zero_sums.append((num, num2))
+        d[num] = True # add number as key in dictionary
+    for key in d.keys():
+        if d.get(-key, False): # for each key, is there a matching negative key
+            zero_sums.append((key, -key))
     return zero_sums
 
 
 """
 Given a list of words, return a list of words with duplicates removed
+Try as a dictionary - not set 
 """
 def find_duplicates(words):
     words_set = set(words)
