@@ -48,7 +48,7 @@ def common_items(list1, list2):
         for item2 in list2:
             if item == item2:
                 common_list.append(item)
-                
+
     common_list = find_duplicates(common_list)
 
     return common_list
@@ -79,10 +79,13 @@ def sum_zero(list1):
     for num in list1:
         d[num] = True # add number as key in dictionary
         if d.get(-num, False):
-            zero_sums.append((num, -num))
-    # for key in d.keys():
-        # if d.get(-key, False): # for each key, is there a matching negative key
-            # zero_sums.append((key, -key))
+            if num < 0:
+                zero_sums.append((num, -num))
+            else:
+                zero_sums.append((-num, num))
+
+    zero_sums = find_duplicates(zero_sums)
+
     return zero_sums
 
 
