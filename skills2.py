@@ -48,13 +48,10 @@ def common_items(list1, list2):
         for item2 in list2:
             if item == item2:
                 common_list.append(item)
-        # if list2.__contains__(item):
-        #     if common_list.__contains__(item):
-        #         continue
-        #     else:
-        #         common_list.append(item)
+                
+    common_list = find_duplicates(common_list)
 
-    return list(set(common_list))
+    return common_list
 
 
 """
