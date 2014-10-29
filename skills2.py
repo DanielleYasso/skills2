@@ -26,13 +26,11 @@ def count_unique(string1):
         word_list = line.strip().split()
         for word in word_list:
             word = clean_word(word)
+            if word == "":
+                continue
             d[word] = d.get(word, 0) + 1
             for letter in word:
-                letter_count[letter] = letter_count.get(letter, 0) + 1
-
-    # remove empty string            
-    if d.get("", 0) == 276:
-        del d[""]   
+                letter_count[letter] = letter_count.get(letter, 0) + 1 
         
     for word in sorted(d.keys()):
         print "\"%s\" appears %d times" % (word, d[word])
@@ -80,9 +78,11 @@ def sum_zero(list1):
     d = {}
     for num in list1:
         d[num] = True # add number as key in dictionary
-    for key in d.keys():
-        if d.get(-key, False): # for each key, is there a matching negative key
-            zero_sums.append((key, -key))
+        if d.get(-num, False):
+            zero_sums.append((num, -num))
+    # for key in d.keys():
+        # if d.get(-key, False): # for each key, is there a matching negative key
+            # zero_sums.append((key, -key))
     return zero_sums
 
 
@@ -106,15 +106,14 @@ def word_length(filename):
     d = {}
     f = open(filename)
     for line in f:
-        words_list = line.strip().split()
+        line = line.strip()
+        words_list = line.split()
         for word in words_list:
             word = clean_word(word).upper()
+            if word == "":
+                continue
             length = len(word)
             d.setdefault(length, []).append(word)
-
-    # remove zero length 
-    if d.get(0):
-        del d[0]
 
     for length in sorted(d.keys()):
         print "Words with a length of %d:" % length
