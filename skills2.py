@@ -54,7 +54,7 @@ def common_items(list1, list2):
         #     else:
         #         common_list.append(item)
 
-    return common_list
+    return list(set(common_list))
 
 
 """
